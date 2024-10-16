@@ -7,7 +7,7 @@
 This repository contains various ports I've worked on for the PortMaster platform. Visit [PortMaster's official website](https://portmaster.games) for additional information.
  
 ### Published
-* [Commander Genius](https://github.com/t0b10-r3tr0/PortMaster-Ports/Commander%20Genius)
+* [Commander Genius](https://github.com/t0b10-r3tr0/PortMaster-Ports/tree/main/Commander%20Genius)
 
 ### In-Progress
 * [GreenPDF](https://github.com/t0b10-r3tr0/PortMaster-Ports/edit/main/README.md)
