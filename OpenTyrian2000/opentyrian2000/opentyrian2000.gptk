@@ -1,6 +1,6 @@
 back = enter
 back = add_alt
-start = escape
+start = esc
 
 a = space
 b = space
