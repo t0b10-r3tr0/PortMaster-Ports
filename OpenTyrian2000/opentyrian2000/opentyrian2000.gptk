@@ -1,0 +1,33 @@
+back = enter
+back = add_alt
+start = escape
+
+a = space
+b = space
+x = leftalt
+y = leftctrl
+
+l1 = leftctrl
+l2 = enter
+l2 = add_alt
+l3 = leftctrl
+
+r1 = leftalt
+r2 = enter
+r2 = add_alt
+r3 = leftault
+
+up = up
+down = down
+left = left
+right = right
+
+left_analog_up = up
+left_analog_down = down
+left_analog_left = left
+left_analog_right = right
+
+right_analog_up = up
+right_analog_down = down 
+right_analog_left = left
+right_analog_right = right
