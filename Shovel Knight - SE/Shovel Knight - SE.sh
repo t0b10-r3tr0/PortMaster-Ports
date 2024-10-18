@@ -5,7 +5,7 @@
 # https://github.com/JohnnyonFlame/BoxofPatches
 
 # Enable verbose mode for debugging
-#  set -xv
+# set -xv
 # _DEBUG="on" 
 
 function DEBUG()
@@ -55,7 +55,6 @@ echo "Detecting game data, please wait... (Shouldn't be too long)" > /dev/tty0
 declare -A games
 games=(
     ["ShovelOfHope"]="Shovel of Hope"
-    ["PlagueOfShadows"]="Plague of Shadows"
     ["SpecterOfTorment"]="Specter of Torment"
     ["KingOfCards"]="King of Cards"
     ["ShovelKnightShowdown"]="Shovel Knight Showdown"
@@ -94,15 +93,15 @@ choice=$("${CMD[@]}" 2>&1 >$CUR_TTY)
         stop_with_reason "QUIT: $choice"
         exit 1;
       fi
-
+      # Subtract 1 from the choice
+((choice -= 1))
 # No more user input required
 $ESUDO kill -9 $(pidof gptokeyb)
 printf "\033c" > $CUR_TTY
 
 DEBUG echo "begin games launch." 2>&1 | tee -a $LOG_FILE
 
-# Subtract 1 from the choice
-((choice -= 1))
+
 
 # Retrieve the game directory / binary from the choice
 selected_game_dir="$(to_lowercase "${installed_games[$choice]}")"
