@@ -108,7 +108,7 @@ selected_game_dir="$(to_lowercase "${installed_games[$choice]}")"
 selected_binary="${installed_games[$choice]}"
 
 # Print the selected game, binary, and game directory
-DEBUG echo "Selected '${games[$game]}' with binary '$selected_binary' (64 bit) in game directory '$selected_game_dir'." 2>&1 | tee -a $LOG_FILE
+DEBUG echo "Selected '${games[$game]}' with binary '$selected_binary' in game directory '$selected_game_dir'." 2>&1 | tee -a $LOG_FILE
 
 # Change to selected game directory
 cd "$GAMEDATADIR/$selected_game_dir/64" || stop_with_reason "EXIT: Executable dir not found."

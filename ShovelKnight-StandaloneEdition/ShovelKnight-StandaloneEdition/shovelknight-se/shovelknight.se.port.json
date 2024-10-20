@@ -1,0 +1,23 @@
+{
+    "version": 2,
+    "name": "shovelknight.standalones.zip",
+    "items": [
+        "Shovel Knight - Stand-Alone Edition.sh",
+        "shovelknight-standalones/"
+    ],
+    "items_opt": null,
+    "attr": {
+        "title": "Shovel Knight - Standalones",
+        "desc": "Shovel Knight Treasure Trove loader.  You must have a copy of one or more of the stand-alone Shovel Knight for Linux copied to the ports/shovelknight-standalone/gamedata folder for the appropriate game.  For more info on the setup needs, see https://github.com/christianhaitian/arkos/wiki/ArkOS-Emulators-and-Ports-information",
+        "inst": "",
+        "genres": [
+            "action",
+            "adventure"
+        ],
+        "porter": "t0b10-t3nm4 & Johnny on Flame",
+        "image": {},
+        "rtr": false,
+        "runtime": null,
+        "reqs": []
+    }
+}

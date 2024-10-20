@@ -4,8 +4,11 @@
 # original port by JohnnyonFlame, this just extends it to support the stand-alone games.
 # https://github.com/JohnnyonFlame/BoxofPatches
 
+# implementation example provided by kloptops, this script takes a lot of design from the GemRB port.
+# https://github.com/kloptops/Portmaster-misc
+
 # Enable verbose mode for debugging
-# set -xv
+#  set -xv
 # _DEBUG="on" 
 
 function DEBUG()
@@ -49,8 +52,6 @@ $ESUDO chmod 666 /dev/tty1
 printf "\033c" > /dev/tty0
 printf "\033c" > /dev/tty1
 
-echo "Detecting game data, please wait... (Shouldn't be too long)" > /dev/tty0
-
 # Define the game directories and names
 declare -A games
 games=(
@@ -63,7 +64,7 @@ games=(
 # Check for installed games
 installed_games=()
 for game in "${!games[@]}"; do
-    if [ -f "$GAMEDATADIR/$game/32/$game" ]; then
+    if [ -f "$GAMEDIR/gamedata/$game/32/$game" ]; then
         installed_games+=("$game")
     fi
 done
@@ -93,15 +94,15 @@ choice=$("${CMD[@]}" 2>&1 >$CUR_TTY)
         stop_with_reason "QUIT: $choice"
         exit 1;
       fi
-      # Subtract 1 from the choice
-((choice -= 1))
+
 # No more user input required
 $ESUDO kill -9 $(pidof gptokeyb)
 printf "\033c" > $CUR_TTY
 
 DEBUG echo "begin games launch." 2>&1 | tee -a $LOG_FILE
 
-
+# Subtract 1 from the choice
+((choice -= 1))
 
 # Retrieve the game directory / binary from the choice
 selected_game_dir="$(to_lowercase "${installed_games[$choice]}")"
@@ -110,11 +111,9 @@ selected_binary="${installed_games[$choice]}"
 # Print the selected game, binary, and game directory
 DEBUG echo "Selected '${games[$game]}' with binary '$selected_binary' in game directory '$selected_game_dir'." 2>&1 | tee -a $LOG_FILE
 
-# Change to selected game directory
+# change to selected game directory
 cd "$GAMEDATADIR/$selected_game_dir/32" || stop_with_reason "EXIT: Executable dir not found."
 DEBUG echo "Attempting launch from: $GAMEDATADIR/$selected_game_dir/32"
-
-# Environment setup
 export LIBGL_NOBANNER=1
 export LIBGL_ES=2
 export LIBGL_GL=21
@@ -133,14 +132,11 @@ $GPTOKEYB "box86" -c "$GAMEDIR/shovelknight.gptk" &
 
 echo "Loading, please wait... (Shouldn't be too long)" > /dev/tty0
 
-# Replace the exisiting binary with the standalone version
-# $ESUDO cp -rf $selected_binary ShovelKnight 2>&1 | tee -a $LOG_FILE
-
-# Don't be stupid
+# It works, don't judge me! (won't properly apply @JohnnyonFlame's no-nag patch for 'Shovel Knight Showdown' due to mismatched signature)
+$ESUDO cp -rf $selected_binary ShovelKnight 2>&1 | tee -a $LOG_FILE
 DEBUG find . 2>&1 | tee -a $LOG_FILE
-$GAMEDIR/box86/box86 $selected_binary 2>&1 | tee -a $LOG_FILE
-
-# $ESUDO rm -rf ShovelKnight
+$GAMEDIR/box86/box86 ShovelKnight 2>&1 | tee -a $LOG_FILE
+$ESUDO rm -rf ShovelKnight
 
 stop_with_reason "END: Port was stopped. Exiting."
 

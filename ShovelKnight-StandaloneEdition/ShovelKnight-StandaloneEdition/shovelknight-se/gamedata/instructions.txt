@@ -1,0 +1,58 @@
+In this directory, you will provide the game data for the titles you have. The 
+The required game data must come from the either the Steam or the GoG version 
+of the Linux version. Ensure you are providing the correct version.
+
+Here is the current directory structure within gamedata:
+
+gamedata
+├─ shovelofhope
+├─ specteroftorment
+├─ kingofcards
+├─ shovelknightshowdown
+
+
+
+For each of the standalone games you have (linux version only), you will have
+to locate and copy the directories '32', '64', and 'data' into the appropriate
+location. They must reside in the named directory for the game.
+
+(within shovelkknight-se directory)
+
+gamedata
+├── "gamename" 
+     ├── *32
+     ├── *64
+     ├── *data
+
+(directories with "*" are provided by user from game files)
+
+
+
+For example, if you had most of the games (except King of Cards), your directory
+structure will look like this:
+
+gamedata
+├── shovelofhope
+│    ├── *32
+│    ├── *64
+│    ├── *data
+├── specteroftorment
+│    ├── *32
+│    ├── *64
+│    ├── *data
+├── kingofcards (empty, no game files provided)
+├── shovelknightshowdown
+     ├── *32
+     ├── *64
+     ├── *data
+
+(directories with "*" are provided by user)
+
+
+
+Do not place files in the directories for the games you don't have (unless you
+want to confuse the detection logic and make things blow up).
+
+Enjoy
+
+t0b10

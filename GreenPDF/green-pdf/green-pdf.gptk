@@ -1,0 +1,35 @@
+back = space
+start = enter
+
+a = n
+b = ctrl
+y = ctrl
+
+x = n
+x = w
+x = h
+x = p
+
+l1 = pageup
+l2 = \"
+l3 = \"
+
+r1 = pagedown
+r2 = \"
+r3 = q
+
+up = up
+down = down
+left = left
+right = right
+
+left_analog_up = +
+left_analog_down = -
+left_analog_left = pageup
+left_analog_right = pagedown
+
+right_analog_up = 
+right_analog_down = down
+right_analog_left = left
+right_analog_right = right
+
