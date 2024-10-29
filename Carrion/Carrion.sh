@@ -1,97 +1,66 @@
 #!/bin/bash
-# PORTMASTER: carrion.zip, Carrion.sh
 
-# Port by t0b10
-
-# Enable verbose mode for debugging
- set -xv
-_DEBUG="on" 
-
-function DEBUG()
-{
- [ "$_DEBUG" == "on" ] &&  "$@"
-}
-
-function to_lowercase() {
-    local input="$1"
-    echo "${input,,}"
-}
-
-function stop_with_reason() {
-    echo "$1" 2>&1 | tee -a $LOG_FILE
-    $ESUDO kill -9 $(pidof gptokeyb)
-    $ESUDO systemctl restart oga_events &
-    printf "\033c" > $CUR_TTY
-}
+XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 
 if [ -d "/opt/system/Tools/PortMaster/" ]; then
   controlfolder="/opt/system/Tools/PortMaster"
 elif [ -d "/opt/tools/PortMaster/" ]; then
   controlfolder="/opt/tools/PortMaster"
+elif [ -d "$XDG_DATA_HOME/PortMaster/" ]; then
+  controlfolder="$XDG_DATA_HOME/PortMaster"
 else
   controlfolder="/roms/ports/PortMaster"
 fi
 
 source $controlfolder/control.txt
+source $controlfolder/device_info.txt
+export PORT_32BIT="Y"
+[ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 get_controls
-
-# Define the base directory for the games
-GAMEDIR="/$directory/ports/carrion"
-GAMEDATADIR="$GAMEDIR/gamedata"
-
-# Output vonrtolas
-CUR_TTY=/dev/tty0
-LOG_FILE=$GAMEDIR/log.txt
 
 $ESUDO chmod 666 /dev/tty0
 $ESUDO chmod 666 /dev/tty1
 printf "\033c" > /dev/tty0
 printf "\033c" > /dev/tty1
 
-echo "Loading... Please wait. (1/2)" > /dev/tty0
+GAMEDIR="/$directory/ports/carrion"
+cd $GAMEDIR
+> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
-# No more user input required
-$ESUDO kill -9 $(pidof gptokeyb)
-printf "\033c" > $CUR_TTY
+	cd $GAMEDIR/gamedata
 
-DEBUG echo "begin games launch." 2>&1 | tee -a $LOG_FILE
+# Request libGL from Portmaster
+if [ -f "${controlfolder}/libgl_${CFW_NAME}.txt" ]; then
+  source "${controlfolder}/libgl_${CFW_NAME}.txt"
+else
+  source "${controlfolder}/libgl_default.txt"
+fi
 
-# Change to selected game directory
-cd "$GAMEDATADIR" || stop_with_reason "EXIT: Executable dir not found."
-DEBUG echo "Attempting launch from: $GAMEDATADIR"
+if [ "$LIBGL_ES" != "" ]; then
+	export SDL_VIDEO_EGL_DRIVER="${GAMEDIR}/gl4es/libEGL.so.1"
+	export SDL_VIDEO_GL_DRIVER="${GAMEDIR}/gl4es/libGL.so.1"
+fi
 
-# Environment setup
+# Force-enable SDL2 JGUID fix, see: https://github.com/ptitSeb/box86/commit/a0a33896519
+export BOX86_SDL2_JGUID=1
 export LIBGL_NOBANNER=1
-export LIBGL_ES=2
-export LIBGL_GL=21
-export LIBGL_FB=4
-export BOX64_LOG=2
-export LD_LIBRARY_PATH=$GAMEDIR/box64/lib:$GAMEDIR/box64/native:/usr/lib:$GAMEDATADIR
-export BOX64_LD_LIBRARY_PATH=$GAMEDIR/box64/lib:$GAMEDIR/box64/native:/usr/lib/:./:lib/:lib/:x64/
-export BOX64_DYNAREC=1
-export SDL_GAMECONTROLLERCONFIG=$sdl_controllerconfig
+export BOX86_LOG=0
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GAMEDIR/box86/native:/usr/lib:/usr/lib32
+export BOX86_LD_LIBRARY_PATH=$GAMEDIR/box86/lib:/usr/lib32/:./:lib/:lib32/:x86/
+export BOX86_DYNAREC=1
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 
-$ESUDO rm -rf ~/.steam
-$ESUDO rm -rf ~/.local/share/Steam
-
-$ESUDO ln -s $GAMEDIR/steam/.steam ~/.steam
-$ESUDO ln -s $GAMEDIR/steam/.local/share/Steam ~/.local/share/Steam
-
-# $ESUDO rm -rf ~/.local/share/Yacht\ Club\ Games
-# $ESUDO ln -s $GAMEDIR/Yacht\ Club\ Games ~/.local/share/
-
+$ESUDO rm -rf "$XDG_DATA_HOME/.carrion"
+$ESUDO ln -s "$GAMEDIR/.carrion" "$XDG_DATA_HOME"
 $ESUDO chmod 666 /dev/uinput
-$GPTOKEYB "box64" -c "$GAMEDIR/carrion.gptk" &
 
-echo "Loading... Please wait. (2/2)" > /dev/tty0
+chmod +x Carrion $GAMEDIR/box86/box86
+$GPTOKEYB "Carrion" -c "$GAMEDIR/carrion.gptk" &
+echo "Loading, please wait... (might take a while!)" > /dev/tty0
+$GAMEDIR/box86/box86 Carrion
 
-## LD_LIBRARY_PATH="$(pwd):$LD_LIBRARY_PATH" ./$1
-
-$GAMEDIR/box64/box64 Carrion 2>&1 | tee -a $LOG_FILE
-
-stop_with_reason "END: Port was stopped. Exiting."
-
-# Cleanup complete, unless you crashed
+$ESUDO kill -9 $(pidof gptokeyb)
+$ESUDO systemctl restart oga_events &
 unset SDL_GAMECONTROLLERCONFIG
 unset LD_LIBRARY_PATH
 printf "\033c" >> /dev/tty1
