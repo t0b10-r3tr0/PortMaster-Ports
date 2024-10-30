@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "name": "shovelknightse.zip",
+  "items": [
+    "Shovel Knight - SE.sh",
+    "shovelknightse"
+  ],
+  "items_opt": [],
+  "attr": {
+    "title": "Shovel Knight - Standalone(s) Edition",
+    "porter": [
+      "t0b10"
+    ],
+    "desc": "Shovel Knight: Standalone Edition(s) loader. This port is for anyone who owns any of the various standalone editions of Shovel Knight such as Shovel of Hope, Specter of Torment, King of Cards, and Shovel Knight Showdown. Upon loading, you will be prompted to select from the installed games as detected in the 'gamedata' directory.\n\nWarning: This port is not compatible with Shovel Knight: Treasure Trove: use this (https://portmaster.games/detail.html?name=shovel.knight) port instead.",
+    "desc_md": "**Shovel Knight: Standalone Edition(s)** loader. This port is for anyone who owns any of the various standalone editions of Shovel Knight such as [**Shovel of Hope**](https://shovelknight.fandom.com/wiki/Shovel_Knight:_Shovel_of_Hope), [**Specter of Torment**](https://shovelknight.fandom.com/wiki/Shovel_Knight:_Specter_of_Torment), [**King of Cards**](https://shovelknight.fandom.com/wiki/Shovel_Knight:_King_of_Cards), and [**Shovel Knight Showdown**](https://shovelknight.fandom.com/wiki/Shovel_Knight_Showdown). Upon loading, you will be prompted to select from the installed games as detected in the `gamedata` directory.\n\n**Warning**: This port is **not compatible** with **Shovel Knight: Treasure Trove**: use [**this port**](https://portmaster.games/detail.html?name=shovel.knight) instead.",
+    "inst": "In the 'gamedata' directory, you will provide the game data for the titles you have. The required game data must come from the Linux version of either the Steam or GOG version of the game. Ensure you are providing the Linux version of the game data:\n\n  - Steam users: instructions for obtaining Linux game files can be found here: https://www.reddit.com/r/SBCGaming/comments/189hn8i/how_to_download_the_linux_version_of_a_steam_game/\n  - GoG users: instructions for obtaining Linux game files can be found here: https://itsfoss.com/play-gog-games-linux/\n\n\n\nHere is the current directory structure within gamedata:\n\ngamedata\n├─ shovelofhope\n├─ specteroftorment\n├─ kingofcards\n├─ shovelknightshowdown\n\n\n\nFor each of the standalone games you have, you will have to locate and copy the directories '32', '64', and 'data' into the appropriate location as shown below. They must reside in the named directory for the game, as shown below:\n\ngamedata\n├── \"gamename\"\n     ├── *32\n     ├── *64\n     ├── *data\n(directories with \"*\" are provided by user from owned game files)\n\n\n\nFor example, if you had most of the games (except King of Cards), your directory structure will look like this:\n\ngamedata\n├── shovelofhope\n│    ├── *32\n│    ├── *64\n│    ├── *data\n├── specteroftorment\n│    ├── *32\n│    ├── *64\n│    ├── *data\n├── kingofcards (empty, no game files provided)\n├── shovelknightshowdown\n     ├── *32\n     ├── *64\n     ├── *data\n(directories with \"*\" are provided by user from owned game files)\n\n\n\nDo not place files in the directories for the games you don't have (unless you want to confuse the detection logic and make things blow up).",
+    "inst_md": "In the `gamedata` directory, you will provide the game data for the titles you own. The required game data must come from the Linux version of either the [**Steam**](https://store.steampowered.com/bundle/13267/Shovel_Knight_Standalone_Bundle/) or [**G**](https://www.gog.com/en/game/shovel_knight_shovel_of_hope)[**O**](https://www.gog.com/en/game/shovel_knight_specter_of_torment)[**G**](https://www.gog.com/en/game/shovel_knight_king_of_cards) version(s) of the game(s). **Ensure you are providing the Linux version of the game data**.\n- **Steam users**: instructions for obtaining Linux game files can be [**found here**](https://www.reddit.com/r/SBCGaming/comments/189hn8i/how_to_download_the_linux_version_of_a_steam_game/).\n- **GoG users**: instructions for obtaining Linux game files can be [**found here**](https://itsfoss.com/play-gog-games-linux/).\n\n\n\nHere is the current directory structure within `gamedata`, relative to the 'shovelknightse' directory within your 'ports' directory:\n\ngamedata\n├─ shovelofhope\n├─ specteroftorment\n├─ kingofcards\n├─ shovelknightshowdown\n\n\n\nFor each of the standalone games you have (linux version only), you will have to locate and copy the directories '32', '64', and 'data' into the appropriate location, as shown below:\n\ngamedata\n├── \"gamename\" \n     ├── *32\n     ├── *64\n     ├── *data\n(directories with * are provided by user from game files)\n\n\n\nFor example, if you had most of the games (except Plague of Shadows and King of Cards), your directory structure will look like this:\n\ngamedata\n├── shovelofhope\n│    ├── *32\n│    ├── *64\n│    ├── *data\n├── specteroftorment\n│    ├── *32\n│    ├── *64\n│    ├── *data\n├── kingofcards (empty, no game files provided)\n├── shovelknightshowdown\n     ├── *32\n     ├── *64\n     ├── *data\n(directories with * are provided by user from game files)\n\n\n\nDo not place files in the directories for the games you don't have (unless you want to confuse the detection logic and make things blow up).",
+    "genres": [
+      "action",
+      "arcade",
+      "platformer"
+    ],
+    "image": null,
+    "rtr": false,
+    "exp": false,
+    "runtime": null,
+    "reqs": [
+      "hires"
+    ],
+    "arch": [
+      "aarch64",
+      "armhf"
+    ]
+  }
+}
