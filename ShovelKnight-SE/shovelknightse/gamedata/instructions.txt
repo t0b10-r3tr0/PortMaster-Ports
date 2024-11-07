@@ -8,6 +8,7 @@ In the 'gamedata' directory, you will provide the game data for the titles you h
 Here is the current directory structure within gamedata:
 
 gamedata
+├─ treasuretrove
 ├─ shovelofhope
 ├─ specteroftorment
 ├─ kingofcards
