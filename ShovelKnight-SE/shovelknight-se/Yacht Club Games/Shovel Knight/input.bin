@@ -1,0 +1,11 @@
+YCFS=1
+uInputID=1942306
+uVersion=4
+bValid=0
+bControllerEnabled=1
+bControllerStickEnabled=1
+uInputGamepad=0 0 0 0 0 0 0 0 0 8 11
+uInputGamepadAlt=32 32 32 32 32 32 32 32 32 32 32
+bValidKeyboard=0
+uInputKeyboard=0 0 0 0 0 0 0 0 0 64 52
+uInputKeyboardAlt=65000 65000 65000 65000 65000 65000 65000 65000 65000 65000 65000

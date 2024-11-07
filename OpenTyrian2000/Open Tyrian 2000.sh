@@ -14,30 +14,19 @@ fi
 
 source $controlfolder/control.txt
 
-[ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
-
 get_controls
 
-GAMEDIRNAME="opentyrian2000"
-GAMEDATADIRNAME="gamedata"
-GAMEDIR="/$directory/ports/$GAMEDIRNAME"
-CONFDIR="$GAMEDIR/conf/"
-BINARY=opentyrian2000
+GAMEDIR="/$directory/ports/opentyrian2000"
 
-> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
-
-export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
-export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
-export XDG_DATA_HOME="$CONFDIR"
-export TEXTINPUTINTERACTIVE="Y" 
-
-mkdir -p "$GAMEDIR/conf/.$GAMEDIRNAME"
-bind_directories ~/.$GAMEDIRNAME $GAMEDIR/conf/.$GAMEDIRNAME
+$ESUDO chmod 666 /dev/tty1
+$ESUDO chmod 666 /dev/uinput
 
 cd $GAMEDIR
+$GPTOKEYB "opentyrian2000" -c "opentyrian2000.gptk" &
 
-$GPTOKEYB "$BINARY" -c ./$BINARY.gptk &
-pm_platform_helper "$GAMEDIR/$BINARY"
-./$BINARY -t $GAMEDATADIRNAME -j
+# launch game 
+./opentyrian2000 -t tyrian2000 -j 2>&1 | tee $GAMEDIR/log.txt
 
-pm_finish
+$ESUDO kill -9 $(pidof gptokeyb)
+$ESUDO systemctl restart oga_events &
+printf "\033c" >> /dev/tty1

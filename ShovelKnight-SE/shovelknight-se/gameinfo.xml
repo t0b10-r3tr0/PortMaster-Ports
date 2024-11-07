@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gameList>
+  <game>
+    <path>./Shovel Knight - SE.sh</path>
+    <name>Shovel Knight - Standalone Edition(s)</name>
+    <desc>The individual adventures of Shovel Knight and the other antagonists/characters involved in the unniverse. A sweeping classic action adventure game series with awesome gameplay, memorable characters, and an 8-bit retro aesthetic! Become Shovel Knight, wielder of the Shovel Blade, as he runs, jumps, and battles in a quest for his lost beloved. Take down the nefarious knights of the Order of No Quarter and their menacing leader, The Enchantress.</desc>
+    <image>./shovelknight-se/cover.png</image>
+    <releasedate>20170405T000000</releasedate>
+    <developer>Yacht Club Games</developer>
+    <publisher>Yacht Club Games</publisher>
+    <genre>Action-Platform / Run Jump Scrolling-Platform</genre>
+  </game>
+</gameList>

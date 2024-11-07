@@ -1,12 +1,16 @@
 #!/bin/bash
+# PORTMASTER: shovelknight.se.zip, Shovel Knight - SE.sh
 
-# original port by JohnnyonFlame, this just extends support for the stand-alone version(s) of the GAME(s).
+# original port by JohnnyonFlame, this just extends it to support the stand-alone games.
 # https://github.com/JohnnyonFlame/BoxofPatches
 
-function stop_with_reason() {
-  # Log exit reason and call pm_finish
-  echo "$1" 2>&1 | tee -a $LOG_FILE
-  pm_finish
+# Enable verbose mode for debugging
+#  set -xv
+# _DEBUG="on" 
+
+function DEBUG()
+{
+ [ "$_DEBUG" == "on" ] &&  "$@"
 }
 
 function to_lowercase() {
@@ -14,34 +18,27 @@ function to_lowercase() {
     echo "${input,,}"
 }
 
-XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+function stop_with_reason() {
+    echo "$1" 2>&1 | tee -a $LOG_FILE
+    $ESUDO kill -9 $(pidof gptokeyb)
+    $ESUDO systemctl restart oga_events &
+    printf "\033c" > $CUR_TTY
+}
 
 if [ -d "/opt/system/Tools/PortMaster/" ]; then
   controlfolder="/opt/system/Tools/PortMaster"
 elif [ -d "/opt/tools/PortMaster/" ]; then
   controlfolder="/opt/tools/PortMaster"
-elif [ -d "$XDG_DATA_HOME/PortMaster/" ]; then
-  controlfolder="$XDG_DATA_HOME/PortMaster"
 else
   controlfolder="/roms/ports/PortMaster"
 fi
 
 source $controlfolder/control.txt
-
-[ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
-
 get_controls
 
-# Define the base directory for the GAMES
-GAMEDIR="/$directory/ports/shovelknightse"
+# Define the base directory for the games
+GAMEDIR="/$directory/ports/shovelknight-se"
 GAMEDATADIR="$GAMEDIR/gamedata"
-
-GAMEDIRNAME="shovelknightse"
-GAMEDATADIRNAME="gamedata"
-GAMEDIR="/$directory/ports/$GAMEDIRNAME"
-CONFDIR="$GAMEDIR/conf/"
-CONFDIRNAME=Yacht\ Club\ Games
-BINARY=ShovelKnight
 
 # Output vonrtolas
 CUR_TTY=/dev/tty0
@@ -52,67 +49,73 @@ $ESUDO chmod 666 /dev/tty1
 printf "\033c" > /dev/tty0
 printf "\033c" > /dev/tty1
 
-# Define the GAME directories and names
-declare -A GAMES
-GAMES=(
+echo "Detecting game data, please wait... (Shouldn't be too long)" > /dev/tty0
+
+# Define the game directories and names
+declare -A games
+games=(
     ["ShovelOfHope"]="Shovel of Hope"
+    ["PlagueOfShadows"]="Plague of Shadows"
     ["SpecterOfTorment"]="Specter of Torment"
     ["KingOfCards"]="King of Cards"
     ["ShovelKnightShowdown"]="Shovel Knight Showdown"
 )
 
-# Check for installed GAMES
-INSTALLED_GAMES=()
-for GAME in "${!GAMES[@]}"; do
-    if [ -f "$GAMEDIR/gamedata/$GAME/32/$GAME" ]; then
-        INSTALLED_GAMES+=("$GAME")
+# Check for installed games
+installed_games=()
+for game in "${!games[@]}"; do
+    if [ -f "$GAMEDATADIR/$game/32/$game" ]; then
+        installed_games+=("$game")
     fi
 done
 
-# allow control for upcoming user choices
 printf "\e[?25h" > $CUR_TTY
 dialog --clear > $CUR_TTY
-$GPTOKEYB "dialog" -c "${GAMEDIR}/$BINARY-menu.gptk" &
 
-# If no GAMES are installed, display an error message and exit
-if [ ${#INSTALLED_GAMES[@]} -eq 0 ]; then
-    dialog --title "Error" --msgbox "No GAMES are detected. Please refer to insructions.txt in gamedata directory." 7 40 > $CUR_TTY
-    stop_with_reason "EXIT: No GAMES detected."
+# allow control for upcoming user choices
+$GPTOKEYB "dialog" -c "${GAMEDIR}/shovelknight-menu.gptk" &
+
+# If no games are installed, display an error message and exit
+if [ ${#installed_games[@]} -eq 0 ]; then
+    dialog --title "Error" --msgbox "No games are detected. Please refer to insructions.txt in gamedata directory." 7 40 > $CUR_TTY
+    stop_with_reason "EXIT: No games detected."
     exit 1
 fi
 
 # Create a menu using dialog
-CMD=(dialog --title "Game Selection" --menu "Select your desired GAME:" 12 40 ${#INSTALLED_GAMES[@]})
+CMD=(dialog --title "Game Selection" --menu "Select your desired game:" 12 40 ${#installed_games[@]})
 i=1
-for GAME in "${INSTALLED_GAMES[@]}"; do
-    CMD+=("$i" "${GAMES[$GAME]}")
+for game in "${installed_games[@]}"; do
+    CMD+=("$i" "${games[$game]}")
     (("i += 1"))
 done
-
-# capture the choice and handle the quit
-CHOICE=$("${CMD[@]}" 2>&1 >$CUR_TTY)
+choice=$("${CMD[@]}" 2>&1 >$CUR_TTY)
   if [ $? != 0 ]; then
-        stop_with_reason "QUIT: User did not proceed."
+        stop_with_reason "QUIT: $choice"
         exit 1;
-  fi
+      fi
 
-# No longer need user input for dialog
+# No more user input required
 $ESUDO kill -9 $(pidof gptokeyb)
 printf "\033c" > $CUR_TTY
 
+DEBUG echo "begin games launch." 2>&1 | tee -a $LOG_FILE
+
 # Subtract 1 from the choice
-((CHOICE -= 1))
+((choice -= 1))
 
-# Retrieve the GAME directory / binary from the choice
-SELECTED_GAMEDIR="$(to_lowercase "${INSTALLED_GAMES[$CHOICE]}")"
-SELECTED_BINARY="${INSTALLED_GAMES[$CHOICE]}"
+# Retrieve the game directory / binary from the choice
+selected_game_dir="$(to_lowercase "${installed_games[$choice]}")"
+selected_binary="${installed_games[$choice]}"
 
-# Print the selected GAME, binary, and GAME directory
-echo "Now loading $SELECTED_BINARY! Please wait..." > /dev/tty0
+# Print the selected game, binary, and game directory
+DEBUG echo "Selected '${games[$game]}' with binary '$selected_binary' in game directory '$selected_game_dir'." 2>&1 | tee -a $LOG_FILE
 
-# change to selected GAME directory
-cd "$GAMEDATADIR/$SELECTED_GAMEDIR/32" || stop_with_reason "EXIT: Executable directory not found."
+# Change to selected game directory
+cd "$GAMEDATADIR/$selected_game_dir/32" || stop_with_reason "EXIT: Executable dir not found."
+DEBUG echo "Attempting launch from: $GAMEDATADIR/$selected_game_dir/32"
 
+# Environment setup
 export LIBGL_NOBANNER=1
 export LIBGL_ES=2
 export LIBGL_GL=21
@@ -124,16 +127,26 @@ export BOX86_LD_LIBRARY_PATH=$GAMEDIR/box86/lib:$GAMEDIR/box86/native:/usr/lib32
 export BOX86_DYNAREC=1
 export SDL_GAMECONTROLLERCONFIG=$sdl_controllerconfig
 
-# Remove the conf dir if it exists, then bind to our port's conf dir
-$ESUDO rm -rf ~/.local/share/$CONFDIRNAME
-bind_directories ~/.local/share/$CONFDIRNAME $GAMEDIR/conf/$CONFDIRNAME
+$ESUDO rm -rf ~/.local/share/Yacht\ Club\ Games
+$ESUDO ln -s $GAMEDIR/Yacht\ Club\ Games ~/.local/share/
+$ESUDO chmod 666 /dev/uinput
+$GPTOKEYB "box86" -c "$GAMEDIR/shovelknight.gptk" &
 
-$GPTOKEYB "box86" -c "$GAMEDIR/$BINARY.gptk" &
+echo "Loading, please wait... (Shouldn't be too long)" > /dev/tty0
 
-if [[ ! -e $BINARY ]]; then
-  $ESUDO cp -rf $SELECTED_BINARY ShovelKnight 2>&1 | tee -a $LOG_FILE
-fi
+# Replace the exisiting binary with the standalone version
+# $ESUDO cp -rf $selected_binary ShovelKnight 2>&1 | tee -a $LOG_FILE
 
-$GAMEDIR/box86/box86 ShovelKnight 2>&1 | tee -a $LOG_FILE
+# Don't be stupid
+DEBUG find . 2>&1 | tee -a $LOG_FILE
+$GAMEDIR/box86/box86 $selected_binary 2>&1 | tee -a $LOG_FILE
+
+# $ESUDO rm -rf ShovelKnight
 
 stop_with_reason "END: Port was stopped. Exiting."
+
+# Cleanup complete, unless you crashed
+unset SDL_GAMECONTROLLERCONFIG
+unset LD_LIBRARY_PATH
+printf "\033c" >> /dev/tty1
+printf "\033c" >> /dev/tty0
