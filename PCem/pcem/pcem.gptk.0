@@ -1,0 +1,38 @@
+# mouse_scale = 8192
+
+deadzone_mode = scaled_radial
+deadzone = 2000
+deadzone_scale = 8
+deadzone_delay = 16
+
+back = enter
+back = add_alt
+start = esc
+
+a = enter
+b = space
+x = leftalt
+y = leftctrl
+
+l1 = leftctrl
+l2 = mouse_middle
+l3 = leftctrl
+
+r1 = leftalt
+r2 = mouse_middle
+r3 = leftalt
+
+up = mouse_movement_up
+down = mouse_movement_down
+left = mouse_movement_left
+right = mouse_movement_right
+
+left_analog_up = /
+left_analog_down = /
+left_analog_left = /
+left_analog_right = /
+
+right_analog_up = /
+right_analog_down = /
+right_analog_left = /
+right_analog_right = /

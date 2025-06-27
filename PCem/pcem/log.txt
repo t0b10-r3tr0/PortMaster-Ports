@@ -1,0 +1,329 @@
+successful bind mount from /mnt/union/ports/pcem/conf/.pcem to /root/.pcem
+/mnt/mmc/MUOS/PortMaster/mod_muOS.txt: line 24: /opt/muos/config/system/foreground_process: No such file or directory
+Now attempting to run westonwrap.sh
+Westonwrap 0.2.7 (Hotfix 3)
+gptokeyb is running, using it as a kill signal
+[GPTK]: Running in UINPUT output mode.
+# RG35XX-SP - muOS
+```bash
+DEVICE_INFO_VERSION=0.1.13
+PM_VERSION=2025.06.17-0409
+CFW_NAME=muOS
+CFW_VERSION=2502.0_PIXIE
+CFW_GLIBC=238
+DEVICE_NAME=RG35XX-SP
+DEVICE_CPU=h700
+DEVICE_ARCH=aarch64
+DEVICE_RAM=1
+DEVICE_HAS_ARMHF="Y"
+DEVICE_HAS_AARCH64="Y"
+DEVICE_HAS_X86="N"
+DEVICE_HAS_X86_64="N"
+DISPLAY_WIDTH=640
+DISPLAY_HEIGHT=480
+DISPLAY_ORIENTATION=0
+ASPECT_X=4
+ASPECT_Y=3
+ANALOG_STICKS=0
+```
+/tmp/weston/westonwrap.sh: line 94: [: : integer expression expected
+Running in aarch64 mode
+Checking if gptokeyb is still running...
+System has GBM/DRM support, setting up libgbm and libdrm.
+Setting up DRM backend
+Setting up Auto renderer
+Setting up Desktop shell
+Error: libGL.so.1: cannot open shared object file: No such file or directory
+System does not have libGL, using included Mesa libs for Weston and XWayland
+Setting up system Libs
+rm: can't remove '/tmp/lib': No such file or directory
+Unknown GL option crusty_x11_egl
+Prep for CrustyGBM is required...
+Setting up Crusty references
+Setting up XDG_RUNTIME_DIR
+Starting Seatd
+Crusty loaded by ./seatd
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:46 with options: DRMGBM_FRONTEND UDEVDRM_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER DRMGBM_LOADER SDL_LOADER 
+Initializing udev frontend
+Done initializing udev frontend. Hooked functions: 6 / Passed through: 86
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing DRMGBM Loader
+Done initializing DRM Loader. Hooked functions: 0 / Passed through: 203
+Done initializing GBM Loader. Hooked functions: 0 / Passed through: 25
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Initializing DRM Pipe... 0/0
+Done initializing.
+00:00:00.000 [INFO] [seatd/seat.c:39] Created VT-bound seat seat0
+00:00:00.000 [INFO] [seatd/seatd.c:194] seatd started
+Checking if gptokeyb is still running...
+XWAYLAND_LD_LIBRARY_PATH=/tmp/weston/lib_aarch64/graphics/mesa_x11_stub
+LD_LIBRARY_PATH=/tmp/weston/lib_aarch64/graphics/crusty_gbm/:/tmp/weston/lib_aarch64:/opt/python/lib:/mnt/union/ports/pcem/libs.aarch64:/opt/muos/extra/lib:/opt/python/lib:/opt/muos/extra/lib:
+LD_PRELOAD=/tmp/weston/lib_aarch64/graphics/crusty_gbm/libcrusty.so
+SHELL=/bin/sh
+bt_mac=
+SDL_HQ_SCALER=0
+GLOBAL_CONFIG=/opt/muos/config/config.ini
+CRUSTY_LIBGBM=/mnt/union/ports/pcem/libs.aarch64/libgbm.so.1
+snum=4c001081081487b2112
+SDL_GAMECONTROLLERCONFIG=19000000010000000100000000010000,Deeplay-keys,a:b3,b:b4,x:b6,y:b5,leftshoulder:b7,rightshoulder:b8,lefttrigger:b12,righttrigger:b13,guide:b11,start:b10,back:b9,dpup:h0.1,dpleft:h0.8,dpright:h0.2,dpdown:h0.4,volumedown:b1,volumeup:b2,leftx:a0,lefty:a1,platform:Linux,
+WESTON_DATA_DIR=/tmp/weston/data
+XDG_DATA_HOME=/mnt/union/ports/pcem/conf/
+EVSIEVE_BIN=evsieve
+weston_shell=desktop-shell.so
+PWD=/tmp/weston
+wifi_mac=
+weston_dir=/tmp/weston
+weston_preload=/tmp/weston/lib_aarch64/graphics/crusty_gbm/libcrusty.so
+KIOSK_CONFIG=/opt/muos/config/kiosk.ini
+game_dir=/mnt/union/ports/pcem
+westonmod_dir=/tmp/weston/lib_aarch64/weston
+HOME=/root
+uboot_message=2018.05(10/18/2024-23:57:10)
+mac_addr=
+PM_RESOURCE_DIR=/mnt/mmc/MUOS/PortMaster/resources
+CRUSTY_LIBDRM=/mnt/union/ports/pcem/libs.aarch64/libdrm.so
+PIPEWIRE_RUNTIME_DIR=/var/run
+libweston_dir=/tmp/weston/lib_aarch64/libweston-14
+boot_type=1
+EVSIEVE_DIR=/opt/muos/bin
+gllib_path=
+CRUSTY_LIBEGL=/usr/lib64/libEGL.so
+SDL_GAMECONTROLLERCONFIG_FILE=/usr/lib32/gamecontrollerdb.txt
+TERM=vt102
+DEVICE_TYPE=rg35xx-sp
+SDL_BLITTER_DISABLED=1
+USER=root
+APP_LIBRARY_PATH=/tmp/weston/lib_aarch64/extra_wayland/:/tmp/weston/lib_aarch64
+AUDIO_SRC=/tmp/mux_audio_src
+SDL_ROTATION=0
+gllib_preload=
+PM_PORTNAME=PCem
+SHLVL=9
+EVSIEVE_CONFDIR=/opt/muos/config/evsieve
+weston_backend=drm --drm-device card0
+specialstr=
+CRUSTY_LIBSDL=/usr/lib64/libSDL2.so
+DEVICE_CONTROL_DIR=/opt/muos/device/rg35xx-sp/control
+WESTON_CONFIG=/tmp/weston/weston.ini
+weston_backendlib=/tmp/weston/lib_aarch64/graphics/crusty_gbm/
+XDG_RUNTIME_DIR=/tmp/weston_runtime
+WESTON_LIBEXEC_DIR=/tmp/weston/libexec
+PM_CAN_MOUNT=Y
+ALSA_CONFIG=/usr/share/alsa/alsa.conf
+PM_VERSION=2025.06.17-0409
+weston_renderer=
+partitions=spare@mmcblk0p1:boot-resource@mmcblk0p2:env@mmcblk0p3:boot@mmcblk0p4:rootfs@mmcblk0p5:roms@mmcblk0p6
+MUOS_BOOT_LOG=/opt/muos/boot.log
+PATH=/opt/python/bin:/mnt/mmc/MUOS/PortMaster/muos:/mnt/mmc/MUOS/PortMaster/muos:/opt/python/bin:/mnt/mmc/MUOS/PortMaster/muos:/mnt/mmc/MUOS/PortMaster/muos:/sbin:/usr/sbin:/bin:/usr/bin
+DEVICE_CONFIG=/opt/muos/device/rg35xx-sp/config.ini
+PM_FUNCS_VERSION=2
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
+WESTON_MODULE_MAP=x11-backend.so=/tmp/weston/lib_aarch64/libweston-14/x11-backend.so;wayland-backend.so=/tmp/weston/lib_aarch64/libweston-14/wayland-backend.so;drm-backend.so=/tmp/weston/lib_aarch64/libweston-14/drm-backend.so;headless-backend.so=/tmp/weston/lib_aarch64/libweston-14/headless-backend.so;gl-renderer.so=/tmp/weston/lib_aarch64/libweston-14/gl-renderer.so;kiosk-shell.so=/tmp/weston/lib_aarch64/weston/kiosk-shell.so;desktop-shell.so=/tmp/weston/lib_aarch64/weston/desktop-shell.so;fullscreen-shell.so=/tmp/weston/lib_aarch64/weston/fullscreen-shell.so;xwayland.so=/tmp/weston/lib_aarch64/libweston-14/xwayland.so;
+XKB_CONFIG_ROOT=/tmp/share/xkb
+PM_SCRIPTNAME=PCem.sh
+OLDPWD=/mnt/union/ports/pcem
+_=/bin/printenv
+Starting Weston
+./wp_weston: /tmp/weston/lib_aarch64/libxkbcommon.so.0: no version information available (required by /tmp/weston/lib_aarch64/libweston-14.so.0)
+./wp_weston: /tmp/weston/lib_aarch64/graphics/crusty_gbm/libcrusty.so: no version information available (required by /tmp/weston/lib_aarch64/libinput.so.10)
+Crusty loaded by ./wp_weston
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:46 with options: DRMGBM_FRONTEND UDEVDRM_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER DRMGBM_LOADER SDL_LOADER 
+Initializing udev frontend
+Done initializing udev frontend. Hooked functions: 6 / Passed through: 86
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing DRMGBM Loader
+Done initializing DRM Loader. Hooked functions: 0 / Passed through: 203
+Done initializing GBM Loader. Hooked functions: 0 / Passed through: 25
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Initializing DRM Pipe... 0/0
+Done initializing.
+Date: 2025-06-19 MDT
+[16:22:19.541] weston 13.0.90
+               https://wayland.freedesktop.org
+               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
+               Build: 13.0.0-110-g215cceb4+
+[16:22:19.542] Command line: ./wp_weston -c /tmp/weston/weston.ini -B drm --drm-device card0 --shell=desktop-shell.so -i0 -Swayland-5 --xwayland
+[16:22:19.542] OS: Linux, 4.9.170, #4 SMP PREEMPT Wed Oct 16 11:37:49 CST 2024, aarch64
+[16:22:19.542] Flight recorder: enabled
+[16:22:19.542] warning: XDG_RUNTIME_DIR "/tmp/weston_runtime" is not configured
+correctly.  Unix access mode must be 0700 (current mode is 0755),
+and must be owned by the user UID 0 (current owner is UID 0).
+Refer to your distribution on how to get it, or
+http://www.freedesktop.org/wiki/Specifications/basedir-spec
+on how to implement it.
+[16:22:19.547] Using config file '/tmp/weston/weston.ini'
+[16:22:19.548] Output repaint window is 7 ms maximum.
+[16:22:19.552] Loading module '/tmp/weston/lib_aarch64/libweston-14/drm-backend.so'
+[16:22:19.566] initializing drm backend
+[16:22:19.566] Trying libseat launcher...
+00:00:00.684 [INFO] [seatd/server.c:146] New client connected (pid: 26273, uid: 0, gid: 0)
+00:00:00.684 [INFO] [seatd/seat.c:169] Added client 1 to seat0
+00:00:00.684 [INFO] [seatd/seat.c:459] Opened client 1 on seat0
+[16:22:19.567] [libseat/libseat.c:73] Seat opened with backend 'seatd'
+[16:22:19.567] [libseat/backend/seatd.c:212] Enabling seat
+[16:22:19.567] libseat: session control granted
+DRM Intercepted device open: /dev/dri/card0 3
+SDL2 Window Resolution: 640 480
+Crusty's SDL2 backend is running with these attributes: 
+Red Size: 8
+Green Size: 8
+Blue Size: 8
+Alpha Size: 8
+Buffer Size: 32
+Double Buffer: 1
+Depth Size: 24
+Stencil Size: 8
+Accum Red Size: 0
+Accum Green Size: 0
+Accum Blue Size: 0
+Accum Alpha Size: 0
+Multisample Buffers: 0
+Multisample Samples: 0
+Context Major Version: 3
+Context Minor Version: 2
+Context Profile Mask: 4
+
+
+
+
+
+[16:22:19.595] using /dev/dri/card0
+[16:22:19.596] DRM: does not support atomic modesetting
+[16:22:19.596] DRM: does not support GBM modifiers
+[16:22:19.596] DRM: does not support async page flipping
+[16:22:19.596] DRM: supports picture aspect ratio
+[16:22:19.600] Loading module '/tmp/weston/lib_aarch64/libweston-14/gl-renderer.so'
+GBM Display requested
+[16:22:19.604] EGL version: 1.4 Bifrost-"r20p0-01rel0"
+[16:22:19.604] EGL vendor: ARM
+[16:22:19.604] EGL client APIs: OpenGL_ES
+[16:22:19.604] warning: Disabling render GPU timeline and explicit synchronization due to missing EGL_ANDROID_native_fence_sync extension
+[16:22:19.604] EGL features:
+               EGL Wayland extension: no
+               context priority: yes
+               buffer age: no
+               partial update: yes
+               swap buffers with damage: no
+               configless context: yes
+               surfaceless context: yes
+               dmabuf support: legacy
+[16:22:19.604] Failed to obtain a high priority context.
+[16:22:19.604] GL version: OpenGL ES 3.2 v1.r20p0-01rel0.8ec337de4ddab3365a32cff58063a9da
+[16:22:19.604] GLSL version: OpenGL ES GLSL ES 3.20
+[16:22:19.604] GL vendor: ARM
+[16:22:19.604] GL renderer: Mali-G31
+[16:22:19.648] GL ES 3.2 - renderer features:
+               read-back format: ARGB8888
+               glReadPixels supports y-flip: no
+               wl_shm 10 bpc formats: yes
+               wl_shm 16 bpc formats: no
+               wl_shm half-float formats: no
+               internal R and RG formats: yes
+               OES_EGL_image_external: yes
+[16:22:19.648] Using GL renderer
+[16:22:19.670] event2  - dierct-keys-polled: is tagged by udev as: Keyboard
+[16:22:19.670] event2  - dierct-keys-polled: device is a keyboard
+[16:22:19.673] event1  - muOS-Keys: is tagged by udev as: Keyboard Joystick
+[16:22:19.673] event1  - muOS-Keys: device is a joystick or a gamepad, ignoring
+[16:22:19.725] event1  - not using input device '/dev/input/event1'
+[16:22:19.728] event0  - axp2202-pek: is tagged by udev as: Keyboard
+[16:22:19.729] event0  - axp2202-pek: device is a keyboard
+[16:22:19.731] event3  - Fake Keyboard: is tagged by udev as: Keyboard Mouse
+[16:22:19.731] event3  - Fake Keyboard: device is a pointer
+[16:22:19.732] event3  - Fake Keyboard: device is a keyboard
+[16:22:19.816] libinput: configuring device "dierct-keys-polled".
+[16:22:19.816] libinput: configuring device "axp2202-pek".
+[16:22:19.816] libinput: configuring device "Fake Keyboard".
+[16:22:19.817] DRM: head 'VGA-0' found, connector 1338001 is connected, EDID make 'unknown', model 'unknown', serial ''
+               Supported EOTF modes: SDR
+[16:22:19.817] Registered plugin API 'weston_drm_output_api_v1' of size 40
+[16:22:19.817] Color manager: no-op
+                 protocol support: no
+[16:22:19.817] Output 'VGA-0' attempts EOTF mode: SDR
+[16:22:19.817] Output 'VGA-0' using color profile: stock sRGB color profile
+[16:22:19.817] Attempting to create gbm surface 640 - 480 - 875713112 - 5, device=0x55ae21b200
+[16:22:19.817] Checking modifier support
+[16:22:19.817] xrgb=875713112 argb=875713089 format=875713112
+[16:22:19.817] Surface=0x55ae3a0970
+[16:22:19.817] Unable to use first choice EGL config with XRGB8888, succeeded with alternate ARGB8888.
+[16:22:19.817] Chosen EGL config details: id:   1 rgba: 8 8 8 8 buf: 32 dep:  0 stcl: 0 int: 0-1 type: win|pix|pbf|swap_preserved vis_id: ARGB8888 (0x34325241)
+GBM backed surface requested
+[16:22:19.818] Output VGA-0 (crtc 1338003) video modes:
+               640x480@66.8, preferred, current, 50.0 MHz
+               26416x44596@0.0, 0.1 MHz
+[16:22:19.818] associating input device event2 with output VGA-0 (none by udev)
+[16:22:19.818] associating input device event0 with output VGA-0 (none by udev)
+[16:22:19.818] associating input device event3 with output VGA-0 (none by udev)
+[16:22:19.818] Output 'VGA-0' enabled with head(s) VGA-0
+[16:22:19.818] Compositor capabilities:
+               arbitrary surface rotation: yes
+               screen capture uses y-flip: yes
+               cursor planes: yes
+               arbitrary resolutions: no
+               view mask clipping: yes
+               explicit sync: no
+               color operations: no
+               presentation clock: CLOCK_MONOTONIC, id 1
+               presentation clock resolution: 0.000000001 s
+[16:22:19.821] Loading module '/tmp/weston/lib_aarch64/weston/desktop-shell.so'
+[16:22:19.826] Loading module '/tmp/weston/lib_aarch64/libweston-14/xwayland.so'
+[16:22:19.879] Registered plugin API 'weston_xwayland_v3' of size 32
+[16:22:19.879] Registered plugin API 'weston_xwayland_surface_v1' of size 16
+[16:22:19.879] unlinking stale lock file /tmp/.X0-lock
+[16:22:19.879] xserver listening on display :0
+[16:22:19.879] launching 'libexec/weston-keyboard'
+[16:22:19.882] launching '/tmp/weston/libexec/weston-desktop-shell'
+Checking if gptokeyb is still running...
+/tmp/weston/libexec/weston-desktop-shell: /tmp/weston/lib_aarch64/libxkbcommon.so.0: no version information available (required by /tmp/weston/libexec/weston-desktop-shell)
+Running your command ./pcem.aarch64
+---------------------------------------------------------------------------------------------------
+libexec/weston-keyboard: /tmp/weston/lib_aarch64/libxkbcommon.so.0: no version information available (required by libexec/weston-keyboard)
+./pcem.aarch64: error while loading shared libraries: libwx_gtk3u_core-3.3.so.1: cannot open shared object file: No such file or directory
+---------------------------------------------------------------------------------------------------
+Your command has exited.
+Cleaning up
+[16:22:19.931] drm_output_reset_legacy_gamma failed for VGA-0: Operation not permitted
+[16:22:19.933] Warning: computed repaint delay for output [VGA-0] is abnormal: -3144390 msec
+Crusty loaded by /tmp/weston/libexec/weston-desktop-shell
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:46 with options: DRMGBM_FRONTEND UDEVDRM_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER DRMGBM_LOADER SDL_LOADER 
+Initializing udev frontend
+Done initializing udev frontend. Hooked functions: 6 / Passed through: 86
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing DRMGBM Loader
+Done initializing DRM Loader. Hooked functions: 0 / Passed through: 203
+Crusty loaded by libexec/weston-keyboard
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:46 with options: DRMGBM_FRONTEND UDEVDRM_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER DRMGBM_LOADER SDL_LOADER 
+Initializing udev frontend
+Done initializing udev frontend. Hooked functions: 6 / Passed through: 86
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Done initializing GBM Loader. Hooked functions: 0 / Passed through: 25
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Initializing DRM Pipe... 0/0
+Done initializing.
+Initializing DRMGBM Loader
+Done initializing DRM Loader. Hooked functions: 0 / Passed through: 203
+Done initializing GBM Loader. Hooked functions: 0 / Passed through: 25
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Initializing DRM Pipe... 0/0
+Done initializing.
+/tmp/weston/westonwrap.sh: line 3: 26247 Killed                  LD_PRELOAD=$weston_preload $straceseat ./seatd  (wd: /tmp/weston)
+rm: can't remove '/tmp/weston_runtime/wayland-0.lock': No such file or directory
+Failed to process Wayland connection: Connection reset by peer
+Failed to process Wayland connection: Connection reset by peer
+failed to create display: Connection reset by peer
+failed to create display: Connection reset by peer
+[GPTK]: Running in Fake Keyboard mode
+[GPTK]: Using ConfigFile ./PCem.gptk.0
+[GPTK]: Joystick 0 has game controller name 'Deeplay-keys'
